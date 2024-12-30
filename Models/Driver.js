@@ -10,15 +10,13 @@ const basicInfoSchema = new mongoose.Schema({
   phoneNumber: { type: String, required: true },
   gender: { type: String, enum: ['male', 'female', 'other'], required: true },
   address: { type: String, required: true },
-  dateOfBirth: { type: Date, required: true },
-  profileImage: { type: String }, 
+  dateOfBirth: { type: String, required: true },
+  profileImage: { type: String, required: true }, 
 });
 
 // Schema for CNIC Information
 const cnicSchema = new mongoose.Schema({
-  cnicNumber: { type: String, required: true, unique: true },
-  frontImage: { type: String, required: true }, 
-  backImage: { type: String, required: true },  
+  cnicNumber: { type: String, required: true, unique: true }, 
 });
 
 // Schema for License Information
@@ -35,8 +33,6 @@ const bikeInfoSchema = new mongoose.Schema({
   vehicleNumber: { type: String, required: true },
   company: { type: String, required: true },
   model: { type: String, required: true },
-  chassisNumber: { type: String, required: true },
-  engineNumber: { type: String, required: true },
   front: { type: String, required: true }, 
   right: { type: String, required: true },
   left: { type: String, required: true },
@@ -46,8 +42,6 @@ const bikeInfoSchema = new mongoose.Schema({
 const carInfoSchema = new mongoose.Schema({
   company: { type: String, required: true },
   model: { type: String, required: true },
-  chassisNumber: { type: String, required: true },
-  engineNumber: { type: String, required: true },
   front: { type: String, required: true }, 
   right: { type: String, required: true },
   left: { type: String, required: true },

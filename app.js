@@ -37,7 +37,7 @@ app.use("/api/drivers", driverRoutes); // Add driver API routes
 
 // Default route
 app.get("/", (req, res) => {
-  res.send("Welcome to the ShareGo API!");
+  res.send("Welcome to the ShareGo Backend Server!"); // Send a welcome message
 });
 
 // Start server only after successful DB and Cloudinary connection

@@ -40,8 +40,6 @@ exports.createDriver = async (req, res) => {
       missingFields.push("cnic");
     } else {
       if (!cnic.cnicNumber) missingFields.push("cnic.cnicNumber");
-      if (!cnic.frontImage) missingFields.push("cnic.frontImage");
-      if (!cnic.backImage) missingFields.push("cnic.backImage");
     }
 
     // Validate License Info
@@ -63,10 +61,6 @@ exports.createDriver = async (req, res) => {
         missingFields.push("vehicle.bikeInfo.vehicleNumber");
       if (!vehicle.bikeInfo.company) missingFields.push("vehicle.bikeInfo.company");
       if (!vehicle.bikeInfo.model) missingFields.push("vehicle.bikeInfo.model");
-      if (!vehicle.bikeInfo.chassisNumber)
-        missingFields.push("vehicle.bikeInfo.chassisNumber");
-      if (!vehicle.bikeInfo.engineNumber)
-        missingFields.push("vehicle.bikeInfo.engineNumber");
       if (!vehicle.bikeInfo.front) missingFields.push("vehicle.bikeInfo.front");
       if (!vehicle.bikeInfo.back) missingFields.push("vehicle.bikeInfo.back");
       if (!vehicle.bikeInfo.right) missingFields.push("vehicle.bikeInfo.right");
