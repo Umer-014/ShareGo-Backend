@@ -33,6 +33,7 @@ const bikeInfoSchema = new mongoose.Schema({
   vehicleNumber: { type: String, required: true },
   company: { type: String, required: true },
   model: { type: String, required: true },
+  engineNumber: { type: String, required: true },
   front: { type: String, required: true }, 
   right: { type: String, required: true },
   left: { type: String, required: true },
@@ -40,8 +41,10 @@ const bikeInfoSchema = new mongoose.Schema({
 });
 
 const carInfoSchema = new mongoose.Schema({
+  vehicleNumber: { type: String, required: true },
   company: { type: String, required: true },
   model: { type: String, required: true },
+  engineNumber: { type: String, required: true },
   front: { type: String, required: true }, 
   right: { type: String, required: true },
   left: { type: String, required: true },

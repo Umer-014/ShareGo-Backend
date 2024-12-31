@@ -59,8 +59,11 @@ exports.createDriver = async (req, res) => {
     } else if (vehicle.type === "Bike" && vehicle.bikeInfo) {
       if (!vehicle.bikeInfo.vehicleNumber)
         missingFields.push("vehicle.bikeInfo.vehicleNumber");
-      if (!vehicle.bikeInfo.company) missingFields.push("vehicle.bikeInfo.company");
+      if (!vehicle.bikeInfo.company)
+        missingFields.push("vehicle.bikeInfo.company");
       if (!vehicle.bikeInfo.model) missingFields.push("vehicle.bikeInfo.model");
+      if (!vehicle.bikeInfo.engineNumber)
+        missingFields.push("vehicle.bikeInfo.engineNumber");
       if (!vehicle.bikeInfo.front) missingFields.push("vehicle.bikeInfo.front");
       if (!vehicle.bikeInfo.back) missingFields.push("vehicle.bikeInfo.back");
       if (!vehicle.bikeInfo.right) missingFields.push("vehicle.bikeInfo.right");
@@ -76,7 +79,13 @@ exports.createDriver = async (req, res) => {
     }
 
     // Create and save the new driver with verification set to "pending"
-    const newDriver = new Driver({ basicInfo, cnic, license, vehicle, verification: "pending" });
+    const newDriver = new Driver({
+      basicInfo,
+      cnic,
+      license,
+      vehicle,
+      verification: "pending",
+    });
     await newDriver.validate();
     const savedDriver = await newDriver.save();
 
@@ -91,7 +100,6 @@ exports.createDriver = async (req, res) => {
     res.status(500).json({ message: "Error creating driver: " + err.message });
   }
 };
-
 
 // Update driver by ID
 exports.updateDriverById = async (req, res) => {
