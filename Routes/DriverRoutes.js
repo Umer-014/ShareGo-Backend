@@ -24,7 +24,7 @@ router.delete("/:id", deleteDriverById);
 // Get all drivers
 router.get("/", getAllDrivers);
 
-// Get driver by ID
+// Route to get driver by ID
 router.get("/:id", getDriverById);
 
 module.exports = router;

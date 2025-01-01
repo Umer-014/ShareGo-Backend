@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Driver = require("../Models/Driver");
 
 // Create a new driver
@@ -89,7 +90,11 @@ exports.createDriver = async (req, res) => {
     await newDriver.validate();
     const savedDriver = await newDriver.save();
 
-    res.status(201).json(savedDriver);
+    res.status(201).json({
+      id: savedDriver._id,
+      verification: savedDriver.verification,
+      message: "Driver created successfully",
+    });
   } catch (err) {
     if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((e) => e.message);
@@ -142,13 +147,27 @@ exports.getAllDrivers = async (req, res) => {
   }
 };
 
-// Get driver by ID
+// get by id
 exports.getDriverById = async (req, res) => {
   try {
-    const driver = await Driver.findById(req.params.id);
-    if (!driver) return res.status(404).json({ message: "Driver not found" });
+    const driverId = req.params.id;
+
+    // Validate if the ID is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(driverId)) {
+      return res.status(400).json({ message: "Invalid driver ID format" });
+    }
+
+    // Fetch the driver by ID
+    const driver = await Driver.findById(driverId);
+
+    if (!driver) {
+      return res.status(404).json({ message: "Driver not found" });
+    }
+
+    // Return the driver details
     res.status(200).json(driver);
   } catch (err) {
+    console.error("Error fetching driver:", err);
     res.status(500).json({ message: "Error fetching driver: " + err.message });
   }
 };

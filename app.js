@@ -23,6 +23,7 @@ mongoose
   .connect(process.env.DB_LOCAL_URI, { useNewUrlParser: true, useUnifiedTopology: true }) // Add options for connection
   .then(() => {
     console.log("Connected to MongoDB Atlas successfully!");
+    
   })
   .catch((err) => {
     console.error("MongoDB connection error:", err);
